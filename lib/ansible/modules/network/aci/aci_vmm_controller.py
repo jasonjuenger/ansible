@@ -249,7 +249,7 @@ def main():
         domain=dict(type='str', aliases=['domain_name', 'domain_profile']),
         host_or_ip=dict(type='str', aliases=['controller_hostname', 'controller_ip']),
         state=dict(type='str', default='present', choices=['absent', 'present', 'query']),
-        vm_provider=dict(type='str', choices=VM_PROVIDER_MAPPING.keys())
+        vm_provider=dict(type='str', required=True, choices=VM_PROVIDER_MAPPING.keys())
     )
 
     module = AnsibleModule(
