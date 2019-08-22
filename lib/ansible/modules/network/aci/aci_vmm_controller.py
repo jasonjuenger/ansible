@@ -73,48 +73,43 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Add credential to VMware VMM domain
-  aci_vmm_credential:
+- name: Add controller to VMware VMM domain
+  aci_vmm_controller:
     host: apic
     username: admin
     password: SomeSecretPassword
+    name: vCenterController
+    container: vmware_datacenter
     domain: vmware_dom
     description: secure credential
-    name: vCenterCredential
-    credential_username: vCenterUsername
-    credential_password: vCenterPassword
+    host_or_ip: vCenter.local
     vm_provider: vmware
     state: present
-
-- name: Remove credential from VMware VMM domain
-  aci_vmm_credential:
+    
+- name: Remove controller to VMware VMM domain
+  aci_vmm_controller:
     host: apic
     username: admin
     password: SomeSecretPassword
+    name: vCenterController
     domain: vmware_dom
-    name: myCredential
-    vm_provider: vmware
     state: absent
-
-- name: Query a specific VMware VMM credential
-  aci_vmm_credential:
+    
+- name: Query a specific VMware VMM controller
+  aci_vmm_controller:
     host: apic
     username: admin
     password: SomeSecretPassword
+    name: vCenterController
     domain: vmware_dom
-    name: vCenterCredential
-    vm_provider: vmware
     state: query
-  delegate_to: localhost
-  register: query_result
 
-- name: Query all VMware VMM credentials
+- name: Query all VMware VMM controllers
   aci_vmm_credential:
     host: apic
     username: admin
     password: SomeSecretPassword
     domain: vmware_dom
-    vm_provider: vmware
     state: query
   delegate_to: localhost
   register: query_result
